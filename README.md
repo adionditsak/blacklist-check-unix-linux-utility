@@ -19,6 +19,7 @@ Lists grabbed from http://multirbl.valli.org/ with all DNSBLs.
 
     $ bl domain.tld
     $ bl 8.8.8.8
+    $ bl domain.tld | grep -v "not listed"
 
 ###Sample output
 
