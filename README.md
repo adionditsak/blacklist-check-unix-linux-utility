@@ -7,7 +7,7 @@ Check blacklisting for domains and IP addresses in shell.
 
 Works on UNIX/Linux systems with Bash.
 
-Lists grabbed from http://multirbl.valli.org/ with all DNSBLs.
+Blacklists grabbed from http://multirbl.valli.org/ (all DNSBLs).
 
 ###Installation
 
