@@ -7,6 +7,8 @@ Check blacklisting for domains and IP addresses in shell.
 
 Works on UNIX/Linux systems with Bash.
 
+Lists grabbed from http://multirbl.valli.org/ with all DNSBLs.
+
 ###Installation
 
     curl -O https://raw.githubusercontent.com/adionditsak/blacklist-check-unix-linux-utility/master/bl
