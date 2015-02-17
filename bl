@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ####################################################################
-# bl.sh - BLACKLIST CHECK UNIX/LINUX UTILITY                       #
+# bl - BLACKLIST CHECK UNIX/LINUX UTILITY                          #
 # copyright: (c) 2014 Anders Aarvik                                #
 # author: Anders Aarvik (aarvik92@gmail.com) and contributors      #
 # license: MIT licensed. See LICENSE                               #
