@@ -9,7 +9,7 @@ Works on UNIX/Linux systems with Bash.
 
 Blacklists grabbed from http://multirbl.valli.org/ (all DNSBLs).
 
-![ScreenShot](http://aarvik.dk/content/images/2013/Dec/bandwidthd2.png)
+![ScreenShot](http://aarvik.dk/content/images/2013/Dec/bl.png)
 
 ###Installation
 
