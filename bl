@@ -56,7 +56,7 @@ loopthroughblacklists() {
       printf $(env tz=utc date "+%y-%m-%d_%h:%m:%s_%z")
       printf "%-40s" " ${reverse}.${bl}."
 
-      listed="$(dig +short -t a ${reverse}.${bl}.)"
+      listed="[blacklisted] ($(dig +short -t a ${reverse}.${bl}.))"
       echo ${listed:-[not listed]}
   done
 }
