@@ -61,7 +61,7 @@ loopthroughblacklists() {
       if [[ $listed ]]; then
           echo "[blacklisted] (${listed})"
       else
-          echo "[not listed"
+          echo "[not listed]"
       fi
   done
 }
