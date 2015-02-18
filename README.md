@@ -9,6 +9,8 @@ Works on UNIX/Linux systems with Bash.
 
 Blacklists grabbed from http://multirbl.valli.org/ (all DNSBLs).
 
+![ScreenShot](http://aarvik.dk/content/images/2013/Dec/bandwidthd2.png)
+
 ###Installation
 
     curl -O https://raw.githubusercontent.com/adionditsak/blacklist-check-unix-linux-utility/master/bl
