@@ -19,9 +19,12 @@ Blacklists grabbed from http://multirbl.valli.org/ (all DNSBLs).
 
 ###Usage
 
+    # Use with domains or IP addresses
     $ bl domain.tld
-    $ bl 8.8.8.8
-    $ bl domain.tld | grep -v "not listed"
+    $ bl 8.8.8.8 # IP
+    
+    # Pipe with other UNIX utils, eg. grep. Only blacklisted:
+    $ bl domain.tld | grep "blacklisted"
 
 ###Sample output
 
