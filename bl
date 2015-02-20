@@ -11,15 +11,15 @@
 #### main ####
 main() {
 
-  [ $# -ne 1 ] && error 'Please specify a FQDN or IP as a parameter.'
+  [ $# -ne 1 ] && error "Please specify a FQDN or IP as a parameter."
 
-  fqdn=$(echo $1 | grep -P '(?=^.{5,254}$)(^(?:(?!\d+\.)[a-za-z0-9_\-]{1,63}\.?)+(?:[a-za-z]{2,})$)')
+  fqdn=$(echo $1 | grep -P "(?=^.{5,254}$)(^(?:(?!\d+\.)[a-za-z0-9_\-]{1,63}\.?)+(?:[a-za-z]{2,})$)")
 
   if [[ $fqdn ]] ; then
 
     echo "You entered a domain: $1"
 
-    domain=$(host $1 | head -n1 | awk '{print $4}')
+    domain=$(host $1 | head -n1 | awk "{print $4}")
 
     reverseit $domain "IP not valid or domain could not be resolved."
   else
@@ -34,14 +34,14 @@ main() {
 #### reverseit ####
 reverseit() {
 
-    reverse=$(echo $1 |
-    sed -ne "s~^\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)$~\4.\3.\2.\1~p")
+  reverse=$(echo $1 |
+  sed -ne "s~^\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)\.\([0-9]\{1,3\}\)$~\4.\3.\2.\1~p")
 
-    if [ "x${reverse}" = "x" ] ; then
+  if [ "x${reverse}" = "x" ] ; then
 
-        error $2
-        exit 1
-    fi
+    error $2
+    exit 1
+  fi
 }
 
 #### loopthroughblacklists ####
@@ -59,8 +59,16 @@ loopthroughblacklists() {
       listed="$(dig +short -t a ${reverse}.${bl}.)"
 
       if [[ $listed ]]; then
+
+        if [[ $listed == *"timed out"* ]]; then
+
+          echo "[timed out]" | cecho YELLOW
+        else
+
           echo "[blacklisted] (${listed})" | cecho LRED
+        fi
       else
+
           echo "[not listed]" | cecho LGREEN
       fi
   done
@@ -77,241 +85,242 @@ error() {
 cecho(){
   LGREEN="\033[1;32m"
   LRED="\033[1;31m"
+  YELLOW="\033[1;33m"
   NORMAL="\033[m"
- 
+
   color=\$${1:-NORMAL}
- 
-  echo -ne "`eval echo ${color}`"
+
+  echo -ne "$(eval echo ${color})"
   cat
- 
+
   echo -ne "${NORMAL}"
 }
 
 #### blacklists - grabbed from http://multirbl.valli.org/ ####
 blacklists="
-0spam.fusionzero.com
-0spam-killlist.fusionzero.com
-rbl.abuse.ro
-spam.dnsbl.anonmails.de
-dnsbl.anticaptcha.net
-orvedb.aupads.org
-rsbl.aupads.org
-l2.apews.org
-aspews.ext.sorbs.net
-dnsbl.aspnet.hu
-ips.backscatterer.org
-b.barracudacentral.org
-bb.barracudacentral.org
-list.bbfh.org
-l1.bbfh.ext.sorbs.net
-l2.bbfh.ext.sorbs.net
-l3.bbfh.ext.sorbs.net
-l4.bbfh.ext.sorbs.net
-netscan.rbl.blockedservers.com
-rbl.blockedservers.com
-spam.rbl.blockedservers.com
-list.blogspambl.com
-bsb.empty.us
-bsb.spamlookup.net
-dnsbl.burnt-tech.com
-blacklist.sci.kun.nl
-cbl.anti-spam.org.cn
-cblplus.anti-spam.org.cn
-cblless.anti-spam.org.cn
-cdl.anti-spam.org.cn
-cbl.abuseat.org
-rbl.choon.net
-bogons.cymru.com
-v4.fullbogons.cymru.com
-torexit.dan.me.uk
-rbl.dns-servicios.com
-dnsbl.net.ua
-dnsbl.rv-soft.info
-dnsblchile.org
-vote.drbl.caravan.ru
-work.drbl.caravan.ru
-autowork.drbl.ks.cz
-czdynamic.drbl.ks.cz
-work.drbl.ks.cz
-vote.drbldf.dsbl.ru
-work.drbldf.dsbl.ru
-vote.drbl.gremlin.ru
-work.drbl.gremlin.ru
-bl.drmx.org
-dnsbl.dronebl.org
-rbl.efnet.org
-rbl.efnetrbl.org
-tor.efnet.org
-bl.emailbasura.org
-rbl.fasthosts.co.uk
-fnrbl.fast.net
-forbidden.icm.edu.pl
-hil.habeas.com
-dnsbl.cobion.com
-lookup.dnsbl.iip.lu
-spamrbl.imp.ch
-wormrbl.imp.ch
-dnsbl.inps.de
-intercept.datapacket.net
-rbl.interserver.net
-rbl.iprange.net
-mail-abuse.blacklist.jippg.org
-dnsbl.justspam.org
-dnsbl.kempt.net
-spamlist.or.kr
-bl.konstant.no
-relays.bl.kundenserver.de
-spamguard.leadmon.net
-dnsbl.madavi.de
-bl.mailspike.net
-z.mailspike.net
-bl.mav.com.br
-cidr.bl.mcafee.com
-rbl.megarbl.net
-combined.rbl.msrbl.net
-images.rbl.msrbl.net
-phishing.rbl.msrbl.net
-spam.rbl.msrbl.net
-virus.rbl.msrbl.net
-web.rbl.msrbl.net
-relays.nether.net
-unsure.nether.net
-ix.dnsbl.manitu.net
-no-more-funn.moensted.dk
-dyn.nszones.com
-sbl.nszones.com
-bl.nszones.com
-dnsbl.openresolvers.org
-spam.pedantic.org
-pofon.foobar.hu
-dnsbl.proxybl.org
-psbl.surriel.com
-all.rbl.jp
-short.rbl.jp
-virus.rbl.jp
-rbl.rbldns.ru
-rbl.schulte.org
-rbl.talkactive.net
-access.redhawk.org
-dnsbl.rizon.net
-dynip.rothen.com
-dul.ru
-dnsbl.rymsho.ru
-all.s5h.net
-bl.scientificspam.net
-tor.dnsbl.sectoor.de
-exitnodes.tor.dnsbl.sectoor.de
-bl.score.senderscore.com
-dnsbl.sorbs.net
-problems.dnsbl.sorbs.net
-proxies.dnsbl.sorbs.net
-relays.dnsbl.sorbs.net
-safe.dnsbl.sorbs.net
-dul.dnsbl.sorbs.net
-zombie.dnsbl.sorbs.net
-block.dnsbl.sorbs.net
-escalations.dnsbl.sorbs.net
-http.dnsbl.sorbs.net
-misc.dnsbl.sorbs.net
-smtp.dnsbl.sorbs.net
-socks.dnsbl.sorbs.net
-spam.dnsbl.sorbs.net
-recent.spam.dnsbl.sorbs.net
-new.spam.dnsbl.sorbs.net
-old.spam.dnsbl.sorbs.net
-web.dnsbl.sorbs.net
-korea.services.net
-backscatter.spameatingmonkey.net
-badnets.spameatingmonkey.net
-bl.spameatingmonkey.net
-netbl.spameatingmonkey.net
-singlebl.spamgrouper.com
-netblockbl.spamgrouper.com
-bl.spamcannibal.org
-dnsbl.spam-champuru.livedoor.com
-bl.spamcop.net
-pbl.spamhaus.org
-sbl.spamhaus.org
-sbl-xbl.spamhaus.org
-xbl.spamhaus.org
-zen.spamhaus.org
-feb.spamlab.com
-rbl.spamlab.com
-all.spamrats.com
-dyna.spamrats.com
-noptr.spamrats.com
-spam.spamrats.com
-spamsources.fabel.dk
-bl.spamstinks.com
-badhost.stopspam.org
-block.stopspam.org
-dnsbl.stopspam.org
-dul.pacifier.net
-bl.suomispam.net
-gl.suomispam.net
-multi.surbl.org
-dnsrbl.swinog.ch
-st.technovision.dk
-dnsbl.tornevall.org
-rbl2.triumf.ca
-truncate.gbudb.net
-dnsbl-0.uceprotect.net
-dnsbl-1.uceprotect.net
-dnsbl-2.uceprotect.net
-dnsbl-3.uceprotect.net
-ubl.unsubscore.com
-free.v4bl.org
-ip.v4bl.org
-virbl.dnsbl.bit.nl
-dnsbl.webequipped.com
-blacklist.woody.ch
-db.wpbl.info
-bl.blocklist.de
-dnsbl.zapbl.net
-hostkarma.junkemailfilter.com
-rep.mailspike.net
-list.quorum.to
-srn.surgate.net
-0spamtrust.fusionzero.com
-query.bondedsender.org
-plus.bondedsender.org
-whitelist.sci.kun.nl
-cml.anti-spam.org.cn
-rwl.choon.net
-list.dnswl.org
-accredit.habeas.com
-sa-accredit.habeas.com
-hul.habeas.com
-sohul.habeas.com
-nobl.junkemailfilter.com
-dnswl.inps.de
-iadb.isipp.com
-iadb2.isipp.com
-wadb.isipp.com
-wl.mailspike.net
-trusted.nether.net
-wl.nszones.com
-ispmx.pofon.foobar.hu
-whitelist.surriel.com
-eswlrev.dnsbl.rediris.es
-mtawlrev.dnsbl.rediris.es
-swl.spamhaus.org
-wbl.triumf.ca
-ips.whitelisted.org
-abuse-contacts.abusix.org
-all.ascc.dnsbl.bit.nl
-all.dnsbl.bit.nl
-bitonly.dnsbl.bit.nl 
-zz.countries.nerd.dk
-origin.asn.cymru.com
-peer.asn.cymru.com 
-tor.dan.me.uk 
-asn.routeviews.org 
-aspath.routeviews.org
-query.senderbase.org 
-sa.senderbase.org
-geobl.spameatingmonkey.net
-origin.asn.spameatingmonkey.net 
+  0spam.fusionzero.com
+  0spam-killlist.fusionzero.com
+  rbl.abuse.ro
+  spam.dnsbl.anonmails.de
+  dnsbl.anticaptcha.net
+  orvedb.aupads.org
+  rsbl.aupads.org
+  l2.apews.org
+  aspews.ext.sorbs.net
+  dnsbl.aspnet.hu
+  ips.backscatterer.org
+  b.barracudacentral.org
+  bb.barracudacentral.org
+  list.bbfh.org
+  l1.bbfh.ext.sorbs.net
+  l2.bbfh.ext.sorbs.net
+  l3.bbfh.ext.sorbs.net
+  l4.bbfh.ext.sorbs.net
+  netscan.rbl.blockedservers.com
+  rbl.blockedservers.com
+  spam.rbl.blockedservers.com
+  list.blogspambl.com
+  bsb.empty.us
+  bsb.spamlookup.net
+  dnsbl.burnt-tech.com
+  blacklist.sci.kun.nl
+  cbl.anti-spam.org.cn
+  cblplus.anti-spam.org.cn
+  cblless.anti-spam.org.cn
+  cdl.anti-spam.org.cn
+  cbl.abuseat.org
+  rbl.choon.net
+  bogons.cymru.com
+  v4.fullbogons.cymru.com
+  torexit.dan.me.uk
+  rbl.dns-servicios.com
+  dnsbl.net.ua
+  dnsbl.rv-soft.info
+  dnsblchile.org
+  vote.drbl.caravan.ru
+  work.drbl.caravan.ru
+  autowork.drbl.ks.cz
+  czdynamic.drbl.ks.cz
+  work.drbl.ks.cz
+  vote.drbldf.dsbl.ru
+  work.drbldf.dsbl.ru
+  vote.drbl.gremlin.ru
+  work.drbl.gremlin.ru
+  bl.drmx.org
+  dnsbl.dronebl.org
+  rbl.efnet.org
+  rbl.efnetrbl.org
+  tor.efnet.org
+  bl.emailbasura.org
+  rbl.fasthosts.co.uk
+  fnrbl.fast.net
+  forbidden.icm.edu.pl
+  hil.habeas.com
+  dnsbl.cobion.com
+  lookup.dnsbl.iip.lu
+  spamrbl.imp.ch
+  wormrbl.imp.ch
+  dnsbl.inps.de
+  intercept.datapacket.net
+  rbl.interserver.net
+  rbl.iprange.net
+  mail-abuse.blacklist.jippg.org
+  dnsbl.justspam.org
+  dnsbl.kempt.net
+  spamlist.or.kr
+  bl.konstant.no
+  relays.bl.kundenserver.de
+  spamguard.leadmon.net
+  dnsbl.madavi.de
+  bl.mailspike.net
+  z.mailspike.net
+  bl.mav.com.br
+  cidr.bl.mcafee.com
+  rbl.megarbl.net
+  combined.rbl.msrbl.net
+  images.rbl.msrbl.net
+  phishing.rbl.msrbl.net
+  spam.rbl.msrbl.net
+  virus.rbl.msrbl.net
+  web.rbl.msrbl.net
+  relays.nether.net
+  unsure.nether.net
+  ix.dnsbl.manitu.net
+  no-more-funn.moensted.dk
+  dyn.nszones.com
+  sbl.nszones.com
+  bl.nszones.com
+  dnsbl.openresolvers.org
+  spam.pedantic.org
+  pofon.foobar.hu
+  dnsbl.proxybl.org
+  psbl.surriel.com
+  all.rbl.jp
+  short.rbl.jp
+  virus.rbl.jp
+  rbl.rbldns.ru
+  rbl.schulte.org
+  rbl.talkactive.net
+  access.redhawk.org
+  dnsbl.rizon.net
+  dynip.rothen.com
+  dul.ru
+  dnsbl.rymsho.ru
+  all.s5h.net
+  bl.scientificspam.net
+  tor.dnsbl.sectoor.de
+  exitnodes.tor.dnsbl.sectoor.de
+  bl.score.senderscore.com
+  dnsbl.sorbs.net
+  problems.dnsbl.sorbs.net
+  proxies.dnsbl.sorbs.net
+  relays.dnsbl.sorbs.net
+  safe.dnsbl.sorbs.net
+  dul.dnsbl.sorbs.net
+  zombie.dnsbl.sorbs.net
+  block.dnsbl.sorbs.net
+  escalations.dnsbl.sorbs.net
+  http.dnsbl.sorbs.net
+  misc.dnsbl.sorbs.net
+  smtp.dnsbl.sorbs.net
+  socks.dnsbl.sorbs.net
+  spam.dnsbl.sorbs.net
+  recent.spam.dnsbl.sorbs.net
+  new.spam.dnsbl.sorbs.net
+  old.spam.dnsbl.sorbs.net
+  web.dnsbl.sorbs.net
+  korea.services.net
+  backscatter.spameatingmonkey.net
+  badnets.spameatingmonkey.net
+  bl.spameatingmonkey.net
+  netbl.spameatingmonkey.net
+  singlebl.spamgrouper.com
+  netblockbl.spamgrouper.com
+  bl.spamcannibal.org
+  dnsbl.spam-champuru.livedoor.com
+  bl.spamcop.net
+  pbl.spamhaus.org
+  sbl.spamhaus.org
+  sbl-xbl.spamhaus.org
+  xbl.spamhaus.org
+  zen.spamhaus.org
+  feb.spamlab.com
+  rbl.spamlab.com
+  all.spamrats.com
+  dyna.spamrats.com
+  noptr.spamrats.com
+  spam.spamrats.com
+  spamsources.fabel.dk
+  bl.spamstinks.com
+  badhost.stopspam.org
+  block.stopspam.org
+  dnsbl.stopspam.org
+  dul.pacifier.net
+  bl.suomispam.net
+  gl.suomispam.net
+  multi.surbl.org
+  dnsrbl.swinog.ch
+  st.technovision.dk
+  dnsbl.tornevall.org
+  rbl2.triumf.ca
+  truncate.gbudb.net
+  dnsbl-0.uceprotect.net
+  dnsbl-1.uceprotect.net
+  dnsbl-2.uceprotect.net
+  dnsbl-3.uceprotect.net
+  ubl.unsubscore.com
+  free.v4bl.org
+  ip.v4bl.org
+  virbl.dnsbl.bit.nl
+  dnsbl.webequipped.com
+  blacklist.woody.ch
+  db.wpbl.info
+  bl.blocklist.de
+  dnsbl.zapbl.net
+  hostkarma.junkemailfilter.com
+  rep.mailspike.net
+  list.quorum.to
+  srn.surgate.net
+  0spamtrust.fusionzero.com
+  query.bondedsender.org
+  plus.bondedsender.org
+  whitelist.sci.kun.nl
+  cml.anti-spam.org.cn
+  rwl.choon.net
+  list.dnswl.org
+  accredit.habeas.com
+  sa-accredit.habeas.com
+  hul.habeas.com
+  sohul.habeas.com
+  nobl.junkemailfilter.com
+  dnswl.inps.de
+  iadb.isipp.com
+  iadb2.isipp.com
+  wadb.isipp.com
+  wl.mailspike.net
+  trusted.nether.net
+  wl.nszones.com
+  ispmx.pofon.foobar.hu
+  whitelist.surriel.com
+  eswlrev.dnsbl.rediris.es
+  mtawlrev.dnsbl.rediris.es
+  swl.spamhaus.org
+  wbl.triumf.ca
+  ips.whitelisted.org
+  abuse-contacts.abusix.org
+  all.ascc.dnsbl.bit.nl
+  all.dnsbl.bit.nl
+  bitonly.dnsbl.bit.nl
+  zz.countries.nerd.dk
+  origin.asn.cymru.com
+  peer.asn.cymru.com
+  tor.dan.me.uk
+  asn.routeviews.org
+  aspath.routeviews.org
+  query.senderbase.org
+  sa.senderbase.org
+  geobl.spameatingmonkey.net
+  origin.asn.spameatingmonkey.net
 "
 
 ### initiate script ###
