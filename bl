@@ -17,14 +17,14 @@ main() {
 
   if [[ $fqdn ]] ; then
 
-    echo "You entered a domain: $1"
+    echo "You entered a domain: $1" | cecho LGREEN
 
     domain=$(host $1 | head -n1 | awk "{print $4}")
 
     reverseit $domain "IP not valid or domain could not be resolved."
   else
 
-    echo "You entered an IP: $1"
+    echo "You entered an IP: $1" | cecho LGREEN
     reverseit $1 "IP not valid."
   fi
 
@@ -39,7 +39,7 @@ reverseit() {
 
   if [ "x${reverse}" = "x" ] ; then
 
-    error $2
+    error $2 
     exit 1
   fi
 }
@@ -62,9 +62,9 @@ loopthroughblacklists() {
 
         if [[ $listed == *"timed out"* ]]; then
 
-          echo "[timed out]" | cecho YELLOW
+          echo "[timed out]" | cecho YELLOW 
         else
-
+        
           echo "[blacklisted] (${listed})" | cecho LRED
         fi
       else
@@ -77,7 +77,7 @@ loopthroughblacklists() {
 #### error ####
 error() {
 
-  echo $0 error: $1 >&2
+  echo "$0 error: $1" | cecho LRED >&2
   exit 2
 }
 
@@ -87,12 +87,12 @@ cecho(){
   LRED="\033[1;31m"
   YELLOW="\033[1;33m"
   NORMAL="\033[m"
-
+ 
   color=\$${1:-NORMAL}
-
+ 
   echo -ne "$(eval echo ${color})"
   cat
-
+ 
   echo -ne "${NORMAL}"
 }
 
@@ -310,17 +310,17 @@ blacklists="
   abuse-contacts.abusix.org
   all.ascc.dnsbl.bit.nl
   all.dnsbl.bit.nl
-  bitonly.dnsbl.bit.nl
+  bitonly.dnsbl.bit.nl 
   zz.countries.nerd.dk
   origin.asn.cymru.com
-  peer.asn.cymru.com
-  tor.dan.me.uk
-  asn.routeviews.org
+  peer.asn.cymru.com 
+  tor.dan.me.uk 
+  asn.routeviews.org 
   aspath.routeviews.org
-  query.senderbase.org
+  query.senderbase.org 
   sa.senderbase.org
   geobl.spameatingmonkey.net
-  origin.asn.spameatingmonkey.net
+  origin.asn.spameatingmonkey.net 
 "
 
 ### initiate script ###
