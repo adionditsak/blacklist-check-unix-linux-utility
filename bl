@@ -17,14 +17,14 @@ main() {
 
   if [[ $fqdn ]] ; then
 
-    echo "You entered a domain: $1" | cecho YELLOW
+    echo "You entered a domain: $1"
 
     domain=$(host $1 | head -n1 | awk '{print $4}')
 
     reverseit $domain "IP not valid or domain could not be resolved."
   else
 
-    echo "You entered an IP: $1" | cecho YELLOW
+    echo "You entered an IP: $1"
     reverseit $1 "IP not valid."
   fi
 
@@ -77,7 +77,7 @@ loopthroughblacklists() {
 #### error ####
 error() {
 
-  echo "$0 error: $1" | cecho LRED >&2
+  echo $0 error: $1 >&2
   exit 2
 }
 
