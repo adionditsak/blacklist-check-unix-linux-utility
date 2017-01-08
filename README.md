@@ -13,7 +13,7 @@ Blacklists grabbed from http://multirbl.valli.org/ (all DNSBLs).
 
 ###Installation
 
-    curl -O https://raw.githubusercontent.com/adionditsak/blacklist-check-unix-linux-utility/master/bl
+    git clone https://github.com/RealArtemiy/blacklist-check-unix-linux-utility.git
     chmod +x ./bl
     mv ./bl /usr/bin
 
