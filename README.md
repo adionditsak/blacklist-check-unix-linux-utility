@@ -44,7 +44,7 @@ Blacklists grabbed from http://multirbl.valli.org/ (all DNSBLs).
     # cp bl.sh /root/bin/bl/
     # cp ips.txt /root/bin/bl/
 
-    Change mailfrom and mail to addresses
+    Edit mailfrom and mailto addresses
     
     Add check to cron 
     
