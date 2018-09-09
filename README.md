@@ -13,7 +13,7 @@ Blacklists grabbed from http://multirbl.valli.org/ (all DNSBLs).
 
 ### Installation
 
-    git clone https://github.com/RealArtemiy/blacklist-check-unix-linux-utility.git
+    git clone https://github.com/adionditsak/blacklist-check-unix-linux-utility.git
     cd blacklist-check-unix-linux-utility
     chmod +x ./bl
     mv ./bl /usr/bin
@@ -38,15 +38,3 @@ Blacklists grabbed from http://multirbl.valli.org/ (all DNSBLs).
     15-02-17_Feb:02:1424185674_+0000 8.8.8.8.spam.dnsbl.anonmails.de.       [not listed]
     15-02-17_Feb:02:1424185674_+0000 8.8.8.8.dnsbl.anticaptcha.net.         [not listed]
     ...
-
-### Autocheck with email notification
-
-    # mkdir -p /root/bin/bl/
-    # cp bl.sh /root/bin/bl/
-    # cp ips.txt /root/bin/bl/
-
-    Edit mailfrom and mailto addresses
-    
-    Add check to cron 
-    
-    0 9 * * * /root/bin/bl/bl.sh
