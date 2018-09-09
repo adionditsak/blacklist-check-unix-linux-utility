@@ -1,7 +1,7 @@
 # blacklist-check-unix-linux-utility
 Blacklist check UNIX/Linux utility. I was just a bit tired of web interfaces.
 
-###Introduction
+### Introduction
 
 Check blacklisting for domains and IP addresses in shell.
 
@@ -11,13 +11,13 @@ Blacklists grabbed from http://multirbl.valli.org/ (all DNSBLs).
 
 ![ScreenShot](http://aarvik.dk/content/images/2013/Dec/bl.png)
 
-###Installation
+### Installation
 
     git clone https://github.com/RealArtemiy/blacklist-check-unix-linux-utility.git
     chmod +x ./bl
     mv ./bl /usr/bin
 
-###Usage
+### Usage
 
     # Use with domains or IP addresses
     $ bl domain.tld
@@ -26,7 +26,7 @@ Blacklists grabbed from http://multirbl.valli.org/ (all DNSBLs).
     # Pipe with other UNIX utils, eg. grep. Only blacklisted:
     $ bl domain.tld | grep "blacklisted"
 
-###Sample output
+### Sample output
 
     $ bl 8.8.8.8
     You entered an IP: 8.8.8.8
@@ -38,7 +38,7 @@ Blacklists grabbed from http://multirbl.valli.org/ (all DNSBLs).
     15-02-17_Feb:02:1424185674_+0000 8.8.8.8.dnsbl.anticaptcha.net.         [not listed]
     ...
 
-###Autocheck with email notification
+### Autocheck with email notification
 
     # mkdir -p /root/bin/bl/
     # cp bl.sh /root/bin/bl/
