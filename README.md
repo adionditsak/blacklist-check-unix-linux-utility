@@ -14,6 +14,7 @@ Blacklists grabbed from http://multirbl.valli.org/ (all DNSBLs).
 ### Installation
 
     git clone https://github.com/RealArtemiy/blacklist-check-unix-linux-utility.git
+    cd blacklist-check-unix-linux-utility
     chmod +x ./bl
     mv ./bl /usr/bin
 
