@@ -98,56 +98,61 @@ cecho(){
 
 #### blacklists - grabbed from http://multirbl.valli.org/ ####
 blacklists="
-  0spamurl.fusionzero.com
-  uribl.zeustracker.abuse.ch
-  uribl.abuse.ro
-  l1.apews.org
-  dnsbl.aspnet.hu
-  bsb.empty.us
-  bsb.spamlookup.net
-  ex.dnsbl.org
-  in.dnsbl.org
-  dnsbl.othello.ch
-  (hidden)
-  ubl.nszones.com
-  uribl.pofon.foobar.hu
-  dyndns.rbl.jp
-  url.rbl.jp
-  abuse.rfc-clueless.org
-  bogusmx.rfc-clueless.org
-  dsn.rfc-clueless.org
-  elitist.rfc-clueless.org
-  fulldom.rfc-clueless.org
-  postmaster.rfc-clueless.org
-  whois.rfc-clueless.org
-  rhsbl.rymsho.ru
-  rhsbl.scientificspam.net
-  nomail.rhsbl.sorbs.net
-  badconf.rhsbl.sorbs.net
-  rhsbl.sorbs.net
-  fresh.spameatingmonkey.net
-  fresh10.spameatingmonkey.net
-  fresh15.spameatingmonkey.net
-  uribl.spameatingmonkey.net
-  urired.spameatingmonkey.net
-  dbl.spamhaus.org
-  multi.surbl.org
-  uribl.swinog.ch
-  dob.sibl.support-intelligence.net
-  black.uribl.com
-  grey.uribl.com
-  multi.uribl.com
-  red.uribl.com
-  uri.blacklist.woody.ch
-  rhsbl.zapbl.net
-  hostkarma.junkemailfilter.com
-  reputation-domain.rbl.scrolloutf1.com
-  reputation-ns.rbl.scrolloutf1.com
-  nobl.junkemailfilter.com
-  iddb.isipp.com
-  _vouch.dwl.spamhaus.org
-  white.uribl.com
-  list.anonwhois.net
+0spamurl.fusionzero.com
+uribl.zeustracker.abuse.ch
+uribl.abuse.ro
+bsb.empty.us
+bsb.spamlookup.net
+ex.dnsbl.org
+in.dnsbl.org
+bl.fmb.la
+communicado.fmb.la
+nsbl.fmb.la
+short.fmb.la
+black.junkemailfilter.com
+ubl.nszones.com
+uribl.pofon.foobar.hu
+abuse.rfc-clueless.org
+bogusmx.rfc-clueless.org
+dsn.rfc-clueless.org
+elitist.rfc-clueless.org
+fulldom.rfc-clueless.org
+postmaster.rfc-clueless.org
+whois.rfc-clueless.org
+mailsl.dnsbl.rjek.com
+urlsl.dnsbl.rjek.com
+rhsbl.rymsho.ru
+public.sarbl.org
+rhsbl.scientificspam.net
+nomail.rhsbl.sorbs.net
+badconf.rhsbl.sorbs.net
+rhsbl.sorbs.net
+fresh.spameatingmonkey.net
+fresh10.spameatingmonkey.net
+fresh15.spameatingmonkey.net
+uribl.spameatingmonkey.net
+urired.spameatingmonkey.net
+dbl.spamhaus.org
+dnsbl.spfbl.net
+dbl.suomispam.net
+multi.surbl.org
+dob.sibl.support-intelligence.net
+black.uribl.com
+grey.uribl.com
+multi.uribl.com
+red.uribl.com
+uri.blacklist.woody.ch
+rhsbl.zapbl.net
+sa.fmb.la
+hostkarma.junkemailfilter.com
+nobl.junkemailfilter.com
+reputation-domain.rbl.scrolloutf1.com
+reputation-ns.rbl.scrolloutf1.com
+dwl.dnswl.org
+iddb.isipp.com
+_vouch.dwl.spamhaus.org
+dnswl.spfbl.net
+white.uribl.com
 "
 
 ### initiate script ###
