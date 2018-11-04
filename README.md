@@ -7,9 +7,7 @@ Check blacklisting for domains and IP addresses in shell.
 
 Works on UNIX/Linux systems with Bash.
 
-Blacklists grabbed from 
-
-http://multirbl.valli.org/.
+Blacklists grabbed from https://hetrixtools.com/blacklist-check. Previously used http://multirbl.valli.org/. You can find both below or go to the url and copy/paste them.
 
 ![ScreenShot](http://aarvik.dk/content/images/2013/Dec/bl.png)
 
