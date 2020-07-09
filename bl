@@ -8,12 +8,14 @@
 # description: I was just a bit tired of web interfaces            #
 ####################################################################
 
+which ggrep 2> /dev/null > /dev/null && GREP_CMD="ggrep" || GREP_CMD="grep"
+
 #### main ####
 main() {
 
   [ $# -ne 1 ] && error "Please specify a FQDN or IP as a parameter."
 
-  fqdn=$(echo $1 | grep -P "(?=^.{5,254}$)(^(?:(?!\d+\.)[a-za-z0-9_\-]{1,63}\.?)+(?:[a-za-z]{2,})$)")
+  fqdn=$(echo $1 | $GREP_CMD -P "(?=^.{5,254}$)(^(?:(?!\d+\.)[a-za-z0-9_\-]{1,63}\.?)+(?:[a-za-z]{2,})$)")
 
   if [[ $fqdn ]] ; then
 
