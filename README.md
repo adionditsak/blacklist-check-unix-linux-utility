@@ -16,20 +16,21 @@ Blacklists grabbed from https://hetrixtools.com/blacklist-check. Previously used
     git clone https://github.com/adionditsak/blacklist-check-unix-linux-utility.git
     cd blacklist-check-unix-linux-utility
     chmod +x ./bl
-    mv ./bl /usr/bin
+    
+    # optional to make globally available: mv ./bl /usr/local/bin/ 
 
 ### Usage
 
     # Use with domains or IP addresses
-    $ bl domain.tld
-    $ bl 8.8.8.8 # IP
+    $ ./bl domain.tld
+    $ ./bl 8.8.8.8 # IP
     
     # Pipe with other UNIX utils, eg. grep. Only blacklisted:
-    $ bl domain.tld | grep "blacklisted"
+    $ ./bl domain.tld | grep "blacklisted"
 
 ### Sample output
 
-    $ bl 8.8.8.8
+    $ ./bl 8.8.8.8
     You entered an IP: 8.8.8.8
     8.8.8.8 name google-public-dns-a.google.com.
     15-02-17_Feb:02:1424185674_+0000 8.8.8.8.0spam.fusionzero.com.          [not listed]
