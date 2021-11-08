@@ -55,7 +55,6 @@ loopthroughblacklists() {
   echo $1 name ${reverse_dns:----}
 
   for bl in ${blacklists} ; do
-      (
       #printf $(env tz=utc date "+%y-%m-%d_%h:%m:%s_%z")
       #printf "%-40s" " ${reverse}.${bl}."
 
@@ -70,11 +69,10 @@ loopthroughblacklists() {
         
           echo "$bl [blacklisted] (${listed})" | cecho LRED
         fi
-     # else
+      else
 
-          #echo "$bl [not listed]" | cecho LGREEN
+          echo "$bl [not listed]" | cecho LGREEN
       fi
-      ) &
   done
 }
 
@@ -87,6 +85,7 @@ error() {
 
 #### cecho ####
 cecho(){
+
   LGREEN="\033[1;32m"
   LRED="\033[1;31m"
   YELLOW="\033[1;33m"
