@@ -16,8 +16,7 @@ Blacklists grabbed from https://hetrixtools.com/blacklist-check. Previously used
     git clone https://github.com/adionditsak/blacklist-check-unix-linux-utility.git
     cd blacklist-check-unix-linux-utility
     chmod +x ./bl
-    
-    # optional to make globally available: mv ./bl /usr/local/bin/ 
+    mv ./bl /usr/local/bin
 
 ### Usage
 

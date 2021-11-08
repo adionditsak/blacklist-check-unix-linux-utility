@@ -46,6 +46,7 @@ reverseit() {
   fi
 }
 
+echo " "
 #### loopthroughblacklists ####
 loopthroughblacklists() {
 
@@ -54,9 +55,9 @@ loopthroughblacklists() {
   echo $1 name ${reverse_dns:----}
 
   for bl in ${blacklists} ; do
-
-      printf $(env tz=utc date "+%y-%m-%d_%h:%m:%s_%z")
-      printf "%-40s" " ${reverse}.${bl}."
+      (
+      #printf $(env tz=utc date "+%y-%m-%d_%h:%m:%s_%z")
+      #printf "%-40s" " ${reverse}.${bl}."
 
       listed="$(dig +short -t a ${reverse}.${bl}.)"
 
@@ -64,15 +65,16 @@ loopthroughblacklists() {
 
         if [[ $listed == *"timed out"* ]]; then
 
-          echo "[timed out]" | cecho YELLOW 
+          echo "$bl [timed out]" | cecho YELLOW 
         else
         
-          echo "[blacklisted] (${listed})" | cecho LRED
+          echo "$bl [blacklisted] (${listed})" | cecho LRED
         fi
-      else
+     # else
 
-          echo "[not listed]" | cecho LGREEN
+          #echo "$bl [not listed]" | cecho LGREEN
       fi
+      ) &
   done
 }
 
