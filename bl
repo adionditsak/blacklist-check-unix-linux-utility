@@ -8,12 +8,14 @@
 # description: I was just a bit tired of web interfaces            #
 ####################################################################
 
+which ggrep 2> /dev/null > /dev/null && GREP_CMD="ggrep" || GREP_CMD="grep"
+
 #### main ####
 main() {
 
   [ $# -ne 1 ] && error "Please specify a FQDN or IP as a parameter."
 
-  fqdn=$(echo $1 | grep -P "(?=^.{5,254}$)(^(?:(?!\d+\.)[a-za-z0-9_\-]{1,63}\.?)+(?:[a-za-z]{2,})$)")
+  fqdn=$(echo $1 | $GREP_CMD -P "(?=^.{5,254}$)(^(?:(?!\d+\.)[a-za-z0-9_\-]{1,63}\.?)+(?:[a-za-z]{2,})$)")
 
   if [[ $fqdn ]] ; then
 
@@ -98,20 +100,29 @@ cecho(){
   echo -ne "${NORMAL}"
 }
 
+#### Updated at 2021-04-28 from: ####
 #### blacklists - grabbed from https://hetrixtools.com/blacklist-check ####
+#### blacklists - grabbed from https://glockapps.com/blacklist/dnsrbl-org/ ####
 blacklists="
 0spam.fusionzero.com
+0spam-n.fusionzero.com
+0spamtrust.fusionzero.com
+0spamurl.fusionzero.com
 access.redhawk.org
 all.s5h.net
 all.spamrats.com
 aspews.ext.sorbs.net
 babl.rbl.webiron.net
 backscatter.spameatingmonkey.net
+badconf.rhsbl.sorbs.net
 b.barracudacentral.org
 bb.barracudacentral.org
+bl.0spam.org
 black.junkemailfilter.com
+blacklist.netcore.co.in
 bl.blocklist.de
 bl.drmx.org
+bl.fmb.la
 bl.konstant.no
 bl.mailspike.net
 bl.nosolicitado.org
@@ -124,6 +135,7 @@ bl.spamcop.net
 bl.spameatingmonkey.net
 bl.suomispam.net
 bsb.empty.us
+bsb.spamlookup.net
 cart00ney.surriel.com
 cbl.abuseat.org
 cbl.anti-spam.org.cn
@@ -131,6 +143,9 @@ cblless.anti-spam.org.cn
 cblplus.anti-spam.org.cn
 cdl.anti-spam.org.cn
 combined.rbl.msrbl.net
+dblack.mail.abusix.zone
+dbl.spamhaus.org
+dbl.tiopan.com
 db.wpbl.info
 dnsbl-1.uceprotect.net
 dnsbl-2.uceprotect.net
@@ -146,7 +161,6 @@ dnsbl.sorbs.net
 dnsbl.spfbl.net
 dnsbl.tornevall.org
 dnsbl.zapbl.net
-dnsrbl.org
 dnsrbl.swinog.ch
 dul.dnsbl.sorbs.net
 dyna.spamrats.com
@@ -166,9 +180,13 @@ list.bbfh.org
 mail-abuse.blacklist.jippg.org
 misc.dnsbl.sorbs.net
 multi.surbl.org
+nbl.0spam.org
 netscan.rbl.blockedservers.com
 new.spam.dnsbl.sorbs.net
+nomail.rhsbl.sorbs.net
 noptr.spamrats.com
+nordSpam.com
+nsbl.fmb.la
 old.spam.dnsbl.sorbs.net
 pbl.spamhaus.org
 phishing.rbl.msrbl.net
@@ -183,13 +201,17 @@ rbl.dns-servicios.com
 rbl.efnet.org
 rbl.efnetrbl.org
 rbl.interserver.net
-rbl.megarbl.net
 rbl.realtimeblacklist.com
+rbl.schulte.org
 recent.spam.dnsbl.sorbs.net
 relays.dnsbl.sorbs.net
 rep.mailspike.net
+rhsbl.scientificspam.net
+rhsbl.sorbs.net
+rhsbl.zapbl.net
 safe.dnsbl.sorbs.net
 sbl.spamhaus.org
+short.fmb.la
 smtp.dnsbl.sorbs.net
 socks.dnsbl.sorbs.net
 spam.dnsbl.anonmails.de
@@ -208,9 +230,16 @@ talosintelligence.com
 torexit.dan.me.uk
 truncate.gbudb.net
 ubl.unsubscore.com
+uribl.abuse.ro
+uribl.com
+uribl.pofon.foobar.hu
+uribl.spameatingmonkey.net
+uribl.swinog.ch
+url.0spam.org
 virus.rbl.msrbl.net
 web.dnsbl.sorbs.net
 web.rbl.msrbl.net
+wl.0spam.org
 xbl.spamhaus.org
 zen.spamhaus.org
 z.mailspike.net
