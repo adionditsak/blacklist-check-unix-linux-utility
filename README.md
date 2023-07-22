@@ -222,3 +222,7 @@ Blacklists grabbed from https://hetrixtools.com/blacklist-check. Previously used
     z.mailspike.net
     zombie.dnsbl.sorbs.net
     "
+    
+#### Contributors
+
+    Found an extensive list of 800+ blacklists at slurp-ramen.com
