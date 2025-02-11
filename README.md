@@ -1,10 +1,9 @@
 # blacklist-check-unix-linux-utility
 Blacklist check UNIX/Linux utility. I was just a bit tired of web interfaces.
 
-### Introduction
+## UPDATE: I have created a multithreaded and cross OS alternative to this script written in Python. It is here: [https://github.com/adionditsak/dnsbl-checker-python-utility](https://github.com/adionditsak/dnsbl-checker-python-utility)
 
-## UPDATE: I have created a multithreaded and cross OS alternative to this script written in Python. It is here:
-[https://github.com/adionditsak/dnsbl-checker-python-utility](https://github.com/adionditsak/dnsbl-checker-python-utility)
+### Introduction
 
 Check blacklisting for domains and IP addresses in shell.
 
