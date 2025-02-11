@@ -3,6 +3,8 @@ Blacklist check UNIX/Linux utility. I was just a bit tired of web interfaces.
 
 ### Introduction
 
+*UPDATE:* I have created a multithreaded alternative to this script written in Python with an external dnsbls list.
+
 Check blacklisting for domains and IP addresses in shell.
 
 Works on UNIX/Linux systems with Bash.
