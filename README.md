@@ -1,7 +1,7 @@
 # UPDATE
 
-## I have created a multithreaded and cross OS alternative to this script written in Python:
-## [dnsbl-checker-python-utility](https://github.com/adionditsak/dnsbl-checker-python-utility)
+I have created a multithreaded and cross OS alternative to this script written in Python:
+[dnsbl-checker-python-utility](https://github.com/adionditsak/dnsbl-checker-python-utility)
 
 
 
