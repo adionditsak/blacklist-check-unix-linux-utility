@@ -19,8 +19,6 @@ Works on UNIX/Linux systems with Bash.
 
 Blacklists grabbed from https://hetrixtools.com/blacklist-check. Previously used http://multirbl.valli.org/, but changed due to hetrixtools.com providing a list with more reliable responses. You can find both below or go to the url and copy/paste them.
 
-![ScreenShot](./bl.png)
-
 ### Installation
 
     git clone https://github.com/adionditsak/blacklist-check-unix-linux-utility.git
