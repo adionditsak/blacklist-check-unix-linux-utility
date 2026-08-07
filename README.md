@@ -1,11 +1,11 @@
-# Cross OS
+# Multithreaded version
 
 I have created a multithreaded and cross OS alternative to this script written in Python:
-[dnsbl-checker-python-utility](https://github.com/adionditsak/dnsbl-checker-python-utility)
+[blacklist-check](https://github.com/adionditsak/blacklist-check)
 
 # Codeberg
 
-I prefer Codeberg so migrated the repository there
+I prefer Codeberg and migrated the repository there:
 [https://codeberg.org/andersaardvark/blacklist-check-unix-linux-utility](https://codeberg.org/andersaardvark/blacklist-check-unix-linux-utility)
 
 # blacklist-check-unix-linux-utility
